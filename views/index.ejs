@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+<div id="main" class="h-screen w-full bg-zinc-500">
+    <div class="form p-10">
+        <form action="/create" method="post">
+            <input class="w-full inline-block p-3 rounded-md mb-4 outline-none bg-zinc-600" type="text" placeholder="title" name="name">
+            <textarea class="w-full inline-block p-3 rounded-md mb-4 outline-none bg-zinc-600 resize-none" placeholder="your data goes here..." name="details"></textarea>
+            <input type="submit" value="create task" class="px-6 py-2 bg-blue-500 rounded-md mt-2">
+        </form>
+    </div>
+
+    <div class="taskks flex flex-wrap gap-4 p-10"> <!-- Apply flex and flex-wrap to this container -->
+        <% if(files.length > 0){ %> 
+            <% files.forEach(function(file){ %>
+                <div class="task w-72 p-3 bg-zinc-600 rounded-lg">
+                    <h1 class="text-3xl tracking-tighter "> <%= file.name %> </h1>
+                    <p class="text-xl tracking-tighter mt-2"> 
+                        <% if(file.filecontent.length > 15){%>
+                            <%= file.filecontent.substring(0,16) + '...'%>
+                        <%} else {%>
+                            <%= file.filecontent %>
+                        <%}%>
+                    </p>
+                    <a href="/files/<%=file%>" class="text-blue-700">Read more</a>
+                </div>
+            <% }) %> 
+        <% }else{ %>
+            <h3 class="ml-5 text-2xl px-6">no tasks yet</h3>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>

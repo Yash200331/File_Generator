@@ -1,0 +1,1 @@
+console.log(arguments) // or console.log(arguments[0])
